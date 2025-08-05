@@ -11,6 +11,7 @@ import requests
 from PIL import Image
 from src.ocr.lens_betterproto import LensOverlayServerResponse, LensOverlayServerRequest, CenterRotatedBox
 from src.config.config import config
+import pyperclip
 
 JAPANESE_REGEX = re.compile(r'[\u3040-\u309F\u30A0-\u30FF\u4E00-\u9FAF]')
 
@@ -94,6 +95,8 @@ class GoogleLensOcr:
             if processed_paragraphs:
                 full_text_preview = processed_paragraphs[0].full_text[:30]
                 logger.info("OCR complete in %.2fs. Found %d paragraphs. (e.g., \"%s...\")",network_duration, len(processed_paragraphs), full_text_preview)
+                merged_text = ''.join(p.full_text for p in processed_paragraphs)
+                pyperclip.copy(merged_text)
             else:
                 logger.info("OCR complete in %.2fs. No Japanese text found.", network_duration)
 

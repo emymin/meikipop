@@ -6,3 +6,4 @@ Pillow>=11.2.1
 betterproto>=2.0.0b7
 keyboard~=0.13.5; sys_platform != 'linux'
 python-xlib~=0.33; sys_platform == 'linux'
+pyperclip>=1.9.0
